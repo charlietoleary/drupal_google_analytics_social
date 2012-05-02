@@ -1,0 +1,6 @@
+name = "Google Analytics Social Tracking"
+description = Allows your Drupal website to track social actions such as Facebook "Likes" and Twitter "Tweets"
+core = 7.x
+package = Statistics
+configure = admin/config/system/googleanalytics
+dependencies[] = googleanalytics
