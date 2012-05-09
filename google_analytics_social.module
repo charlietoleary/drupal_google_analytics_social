@@ -37,9 +37,12 @@ function google_analytics_social_form_googleanalytics_admin_settings_form_alter(
   $form['tracking']['social']['google_analytics_social_track_twitter'] = array(
     '#type' => 'checkbox',
     '#title' => t('Track Twitter Actions'),
-    '#description' => t('Track actions including Tweets, Follows and Favorites'),
+    '#description' => t('Track actions including Tweets and Follows'),
     '#default_value' => variable_get('google_analytics_social_track_twitter', true),
   );
+
+  // Add our admin JS
+  drupal_add_js(drupal_get_path('module', 'google_analytics_social') . '/js/google_analytics_social_admin.js');
 
 }
 
