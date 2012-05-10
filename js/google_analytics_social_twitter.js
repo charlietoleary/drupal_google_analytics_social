@@ -20,7 +20,7 @@
           // And assing a listener for each one
           twttr.events.bind(action, function(event) {
             /// By defualt, we track the URL the user has "Tweeted"
-            url = event.target.baseURI;
+            var url = event.target.baseURI;
             // If the user registers a "Follow" event
             if (action == 'follow') {
               // Register what user they are following
