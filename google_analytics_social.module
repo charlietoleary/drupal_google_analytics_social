@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * @file
  * Drupal Module: Google Analytics Social
  * A submodule add on for googleanalytics module to enable social media tracking
@@ -13,15 +13,14 @@
  *
  * Modify the main google analytics settings form to include "Social Tracking" Settings
  */
-
 function google_analytics_social_form_googleanalytics_admin_settings_form_alter(&$form, &$form_state, $form_id) {
-  // Insert our settings form into the Vertical tab on the Google Analytics Settings form
+  // Insert our settings form into the Vertical tab on the Google Analytics Settings form.
   $form['tracking']['social'] = array(
     '#type' => 'fieldset',
     '#title' => t('Social Tracking'),
   );
 
-  // Create an array for storing facebook tracking settings
+  // Create an array for storing facebook tracking settings.
   $form['tracking']['social'] = array(
     '#type' => 'fieldset',
     '#title' => t('Social Tracking'),
@@ -31,17 +30,17 @@ function google_analytics_social_form_googleanalytics_admin_settings_form_alter(
     '#type' => 'checkbox',
     '#title' => t('Track Facebook Actions'),
     '#description' => t('Track actions including Likes, Unlikes and Shares'),
-    '#default_value' => variable_get('google_analytics_social_track_facebook', true),
+    '#default_value' => variable_get('google_analytics_social_track_facebook', TRUE),
   );
 
   $form['tracking']['social']['google_analytics_social_track_twitter'] = array(
     '#type' => 'checkbox',
     '#title' => t('Track Twitter Actions'),
     '#description' => t('Track actions including Tweets and Follows'),
-    '#default_value' => variable_get('google_analytics_social_track_twitter', true),
+    '#default_value' => variable_get('google_analytics_social_track_twitter', TRUE),
   );
 
-  // Add our admin JS
+  // Add our admin JS.
   drupal_add_js(drupal_get_path('module', 'google_analytics_social') . '/js/google_analytics_social_admin.js');
 
 }
@@ -51,7 +50,6 @@ function google_analytics_social_form_googleanalytics_admin_settings_form_alter(
  *
  * This is the hook used to insert the original googleanalytics code - so we may as well follow suit
  */
-
 function google_analytics_social_page_alter(&$page) {
 
   // Do the same checks that are done in google analytics module if we should be tracking
