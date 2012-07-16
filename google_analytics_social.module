@@ -9,9 +9,10 @@
  */
 
 /**
- * Implements hook_form_FORMID_alter()
+ * Implements hook_form_FORM_ID_alter().
  *
- * Modify the main google analytics settings form to include "Social Tracking" Settings
+ * Modify the main google analytics settings form 
+ * to include "Social Tracking" Settings.
  */
 function google_analytics_social_form_googleanalytics_admin_settings_form_alter(&$form, &$form_state, $form_id) {
   // Insert our settings form into the Vertical tab on the Google Analytics Settings form.
@@ -46,13 +47,15 @@ function google_analytics_social_form_googleanalytics_admin_settings_form_alter(
 }
 
 /**
- * Implements hook_page_alter()
+ * Implements hook_page_alter().
  *
- * This is the hook used to insert the original googleanalytics code - so we may as well follow suit
+ * This is the hook used to insert the original googleanalytics code 
+ * - so we may as well follow suit.
  */
 function google_analytics_social_page_alter(&$page) {
 
-  // Do the same checks that are done in google analytics module if we should be tracking
+  // Do the same checks that are done in google analytics module 
+  // if we should be tracking.
   global $user;
 
   $id = variable_get('googleanalytics_account', '');
@@ -63,20 +66,21 @@ function google_analytics_social_page_alter(&$page) {
     '403 Forbidden',
     '404 Not Found',
   );
-  
+
   if (!empty($id) && (_googleanalytics_visibility_pages() || in_array($status, $trackable_status_codes)) && _googleanalytics_visibility_user($user)) {
     // If the checks pass
-    // Check if the site owner wishes to track facebook actions
+    // Check if the site owner wishes to track facebook actions.
     $path = drupal_get_path('module', 'google_analytics_social');
-    if (variable_get('google_analytics_social_track_facebook', true)) {
-      // Add our Facebook tracking code
+    if (variable_get('google_analytics_social_track_facebook', TRUE)) {
+      // Add our Facebook tracking code.
       drupal_add_js($path . '/js/google_analytics_social_facebook.js');
     }
-    // Or Twitter Actions
-    if (variable_get('google_analytics_social_track_twitter', true)) {
-      // Initilization of the twitter web intents JS needs to be started before jQuery's $(document).ready()
+    // Or Twitter Actions.
+    if (variable_get('google_analytics_social_track_twitter', TRUE)) {
+      // Initilization of the twitter web intents JS needs to be started 
+      // before jQuery's $(document).ready().
       drupal_add_js($path . '/js/twitterInit.js');
-      // Add our twitter tracking code
+      // Add our twitter tracking code.
       drupal_add_js($path . '/js/google_analytics_social_twitter.js');
     }
   }
